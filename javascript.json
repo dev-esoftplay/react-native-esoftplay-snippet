@@ -17,7 +17,7 @@
 	"Create DB class": {
 		"prefix": "dbcreate",
 		"body": [
-			"import Helper from '../../includes/db';",
+			"import Helper from 'react-native-esoftplay-db';",
 			"",
 			"",
 			"export default class ${1:dbname} extends Helper {",
