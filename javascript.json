@@ -1,0 +1,95 @@
+{
+	/*
+	// Place your snippets for Babel JavaScript here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+*/
+	"Create DB class": {
+		"prefix": "dbcreate",
+		"body": [
+			"import Helper from '../../includes/db';",
+			"",
+			"",
+			"export default class ${1:dbname} extends Helper {",
+			"",
+			"\t/* tablename */",
+			"\tstatic table = '${1:dbname}'",
+			"",
+			"\t/* fieldname */",
+			"\tstatic id = 'id'",
+			"\tstatic title = \"title\";",
+			"\tstatic intro = \"intro\";",
+			"\tstatic description = \"description\";",
+			"\tstatic image = \"image\";",
+			"\tstatic created = \"created\";",
+			"\tstatic url = \"url\";",
+			"",
+			"\tsql = \"CREATE TABLE IF NOT EXISTS '\" + ${1:dbname}.table + \"' (\" + this.getSQLFormat() + \")\"",
+			"",
+			"\tconstructor() {",
+			"\t\tsuper();",
+			"\t\tthis.init(${1:dbname}.table, this.sql)",
+			"\t}",
+			"",
+			"\t/* return fieldname */",
+			"\tgetColumn() {",
+			"\t\treturn [",
+			"\t\t\t${1:dbname}.id,",
+			"\t\t\t${1:dbname}.title,",
+			"\t\t\t${1:dbname}.intro,",
+			"\t\t\t${1:dbname}.description,",
+			"\t\t\t${1:dbname}.image,",
+			"\t\t\t${1:dbname}.created,",
+			"\t\t\t${1:dbname}.url",
+			"\t\t]",
+			"\t}",
+			"}"
+		],
+		"description": "Create DB extends DBHelper"
+	},
+	"db Get All": {
+		"prefix": "dbgetall",
+		"body": [
+			"${1:db}.getAll([fieldname1, fieldname2], [argument1, argument2], orderBy, limit, offset, groupBy, (queryResult)=>{ })"
+		],
+		"description": "function db.getAll()"
+	},
+	"db Get Row": {
+		"prefix": "dbgetrow",
+		"body": [
+			"${1:db}.getRow(id, [fieldname1,fieldname2], [argument1, argument2], (queryResult)=>{})"
+		],
+		"description": "function db.getRow()"
+	},
+	"Config Console": {
+		"prefix": "cc",
+		"body": [
+			"configConsole(${1:log})"
+		],
+		"description": "function config.console()"
+	},
+	"Headered List": {
+		"prefix": "hlist",
+		"body": [
+			"<HeaderedList",
+			"\tdata={this.state.data}",
+			// "\theight={100}",
+			// "\twidth={width}",
+			// "\theaderHeight={200}",
+			// "\theaderWidth={width}",
+			"\trenderHeader={(item)=>{}}",
+			"\trenderBody={(item)=>{}}",
+			"/>"
+		]
+	}
+}
