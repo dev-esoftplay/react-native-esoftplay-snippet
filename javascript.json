@@ -14,8 +14,8 @@
 		"description": "Log output to console"
 	}
 */
-	"Create DB class": {
-		"prefix": "dbcreate",
+	"Masmun Create DB class": {
+		"prefix": "mdbcreate",
 		"body": [
 			"import Helper from 'react-native-esoftplay-db';",
 			"",
@@ -57,15 +57,15 @@
 		],
 		"description": "Create DB extends DBHelper"
 	},
-	"db Get All": {
-		"prefix": "dbgetall",
+	"Masmun db Get All": {
+		"prefix": "mdbgetall",
 		"body": [
 			"${1:db}.getAll([fieldname1, fieldname2], [argument1, argument2], orderBy, limit, offset, groupBy, (queryResult)=>{ })"
 		],
 		"description": "function db.getAll()"
 	},
-	"db Get Row": {
-		"prefix": "dbgetrow",
+	"Masmun db Get Row": {
+		"prefix": "mdbgetrow",
 		"body": [
 			"${1:db}.getRow(id, [fieldname1,fieldname2], [argument1, argument2], (queryResult)=>{})"
 		],
@@ -78,38 +78,36 @@
 		],
 		"description": "function config.console()"
 	},
-	"Headered List": {
-		"prefix": "hlist",
-		"body": [
-			"<HeaderedList",
-			"\tdata={this.state.data}",
-			// "\theight={100}",
-			// "\twidth={width}",
-			// "\theaderHeight={200}",
-			// "\theaderWidth={width}",
-			"\trenderHeader={(item)=>{}}",
-			"\trenderBody={(item)=>{}}",
-			"/>"
-		],
-		"description": ""
-	},
 	"Masmun Create Class": {
 		"prefix": "mcc",
 		"body": [
 			"import React, { Component } from 'react';",
-			"import { View } from 'react-native';",
-			"import Typography from 'react-native-esoftplay-typography';",
+			"import tpl from './${2:tpl}.jsx';",
 			"",
-			"export default class ${1:ClassName} extends Component {",
-			"\trender() {",
-			"\t\treturn (",
-			"\t\t\t<View ",
-			"\t\t\t\tstyle={{ flex: 1 }}>",
+			"export default class ${1:className} extends Component {",
+			"\tstate = {",
 			"",
-			"\t\t\t</View>",
-			"\t\t);",
 			"\t}",
+			"",
+			"\trender = () => tpl(this);",
 			"}",
+		],
+		"description": ""
+	},
+	"Masmun Create Tpl": {
+		"prefix": "mctpl",
+		"body": [
+			"import React from 'react';",
+			"import { View } from 'react-native';",
+			"/* use parent to replace this */",
+			"const tpl = (parent) => {",
+			"\treturn (",
+			"\t\t<View style={{ flex: 1 }}>",
+			"",
+			"\t\t</View>",
+			"\t);",
+			"}",
+			"export default tpl;",
 		],
 		"description": ""
 	},
@@ -117,47 +115,43 @@
 		"prefix": "mcr",
 		"body": [
 			"import React, { Component } from 'react';",
-			"import { View } from 'react-native';",
-			"import Typography from 'react-native-esoftplay-typography';",
 			"import { connect } from 'react-redux';",
-			"",
-			"const initialState = {",
-			"",
-			"}",
-			"",
-			"export const reducer = (state = initialState, action) => {",
-			"\tswitch (action.type) {",
-			"\tcase typeName:",
-			"\t\treturn { ...state };",
-			"",
-			"\tdefault:",
-			"\t\treturn state",
-			"\t}",
-			"};",
-			"",
-			"",
-			"export const action = {",
-			"",
-			"}",
-			"",
-			"const mapStateToProps = (state) => {",
-			"\treturn {",
-			"\t\t${2:props}:state",
-			"\t}",
-			"}",
+			"import tpl from './${2:tpl}.jsx';",
 			"",
 			"class ${1:className} extends Component {",
-			"\trender() {",
-			"\t\treturn (",
-			"\t\t\t<View",
-			"\t\t\t\tstyle={{ flex: 1 }}>",
+			"/* ------START REDUX------ */",
+			"\tstatic initState = {",
 			"",
-			"\t\t\t</View>",
-			"\t\t);",
 			"\t}",
+			"\tstatic reducer = (state = ${1:className}.initState, action) => {",
+			"\t\tswitch (action.type) {",
+			"\t\t\tcase 'action':",
+			"",
+			"\t\t\t\tbreak;",
+			"\t\t\tdefault:",
+			"\t\t\t\treturn state",
+			"\t\t}",
+			"\t}",
+			"\tstatic action = {",
+			"",
+			"\t}",
+			"\tstatic mapStateToProps = (state) => {",
+			"\t\treturn {",
+			"\t\t\tprops: state",
+			"\t\t}",
+			"\t}",
+			"",
+			"/* ------START COMPONENT------- */",
+			"",
+			"",
+			"\tstate = {",
+			"",
+			"\t}",
+			"",
+			"\trender = () => tpl(this);",
 			"}",
 			"",
-			"export default connect(mapStateToProps)(${1:className})",
+			"export default connect(${1:className}.mapStateToProps)(${1:className});",
 		],
 		"description": ""
 	}
