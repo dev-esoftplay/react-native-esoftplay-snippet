@@ -94,8 +94,8 @@
 		],
 		"description": ""
 	},
-	"Masmun Create Tpl": {
-		"prefix": "mctpl",
+	"Masmun Tpl": {
+		"prefix": "mtpl",
 		"body": [
 			"import React from 'react';",
 			"import { View } from 'react-native';",
